@@ -1,6 +1,9 @@
+using CsvHelper;
 using EnsekTechnicalTest.Database.Context;
 using EnsekTechnicalTest.Database.Interfaces;
 using EnsekTechnicalTest.Database.Repositories;
+using EnsekTechnicalTest.Models;
+using EnsekTechnicalTest.Models.Database;
 using EnsekTechnicalTest.Services.Services;
 using EnsekTechnicalTest.Services.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +18,10 @@ builder.Services.AddDbContext<EnsekContext>(options => options.UseSqlServer(conn
 
 builder.Services.AddTransient<IAccountRepository, AccountRepository>();
 builder.Services.AddTransient<IAccountService, AccountService>();
+builder.Services.AddTransient<IMeterReadingRepository, MeterReadingRepository>();
+builder.Services.AddTransient<IMeterReadingService, MeterReadingService>();
+builder.Services.AddTransient<ICsvParser<MeterReadingFromFile>, CsvParser<MeterReadingFromFile>>();
+builder.Services.AddTransient<ICsvParser<MeterReading>, CsvParser<MeterReading>>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

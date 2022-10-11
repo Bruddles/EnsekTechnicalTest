@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace EnsekTechnicalTest.Models
+namespace EnsekTechnicalTest.Models.Database
 {
     public class MeterReading
     {

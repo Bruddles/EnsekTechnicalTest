@@ -1,5 +1,5 @@
 ﻿using EnsekTechnicalTest.Database.Interfaces;
-using EnsekTechnicalTest.Models;
+using EnsekTechnicalTest.Models.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace EnsekTechnicalTest.Database.Context

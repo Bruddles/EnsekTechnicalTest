@@ -1,4 +1,5 @@
 ﻿using EnsekTechnicalTest.Models;
+using EnsekTechnicalTest.Models.Database;
 using EnsekTechnicalTest.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

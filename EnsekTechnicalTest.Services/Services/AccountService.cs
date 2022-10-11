@@ -1,5 +1,5 @@
 ﻿using EnsekTechnicalTest.Database.Interfaces;
-using EnsekTechnicalTest.Models;
+using EnsekTechnicalTest.Models.Database;
 using EnsekTechnicalTest.Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;

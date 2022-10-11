@@ -1,4 +1,4 @@
-﻿using EnsekTechnicalTest.Models;
+﻿using EnsekTechnicalTest.Models.Database;
 
 namespace EnsekTechnicalTest.Database.Interfaces
 {

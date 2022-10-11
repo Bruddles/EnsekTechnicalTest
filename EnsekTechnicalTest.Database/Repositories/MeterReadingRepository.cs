@@ -1,6 +1,6 @@
 ﻿using EnsekTechnicalTest.Database.Context;
 using EnsekTechnicalTest.Database.Interfaces;
-using EnsekTechnicalTest.Models;
+using EnsekTechnicalTest.Models.Database;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
