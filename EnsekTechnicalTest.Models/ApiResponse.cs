@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace EnsekTechnicalTest.Models
 {
-    public class ApiResponse<T>
+
+    public class ApiResponse
     {
         public bool Success { get; set; }
         public string Error { get; set; }
+    }
+
+    public class ApiResponse<T> : ApiResponse
+    {
         public T Value { get; set; }
     }
 }

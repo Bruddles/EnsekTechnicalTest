@@ -10,7 +10,7 @@ using System.Reflection.Metadata;
 
 namespace EnsekTechnicalTest.Database.Test
 {
-    public class AccountRepositoryTests
+    public class MeterReadingRepositoryTests
     {
 
         private DbConnection _connection;
@@ -46,7 +46,29 @@ FROM Account;";
             context.AddRange(
                 new Account { AccountId = 1, FirstName = "Test", LastName = "Test" },
                 new Account { AccountId = 2, FirstName = "Test", LastName = "Test" },
-                new Account { AccountId = 3, FirstName = "Test", LastName = "Test" }
+                new Account { AccountId = 3, FirstName = "Test", LastName = "Test" },
+
+                new MeterReading()
+                {
+                    Id = 1,
+                    AccountId = 1,
+                    MeterReadingDateTime = DateTime.MinValue,
+                    MeterReadValue = 1234
+                },
+                new MeterReading()
+                {
+                    Id = 2,
+                    AccountId = 1,
+                    MeterReadingDateTime = DateTime.Now,
+                    MeterReadValue = 1234
+                },
+                new MeterReading()
+                {
+                    Id = 3,
+                    AccountId = 2,
+                    MeterReadingDateTime = DateTime.Now,
+                    MeterReadValue = 4567
+                }
             );
             context.SaveChanges();
         }
@@ -57,29 +79,27 @@ FROM Account;";
         }
 
         [Test]
-        public async Task Get_ReturnsAccount()
+        public async Task GetAll_ReturnsAll()
         {
             var context = new EnsekContext(_contextOptions);
-            var repo = new AccountRepository(context);
+            var repo = new MeterReadingRepository(context);
 
-            var account = await repo.Get(1);
+            var result = await repo.GetAll();
 
-            Assert.AreEqual(1, account.AccountId);
-            Assert.AreEqual("Test", account.FirstName);
-            Assert.AreEqual("Test", account.LastName);
+            Assert.AreEqual(3, result.Count);
         }
 
         [Test]
-        public async Task GetAll_ReturnsAccounts()
+        public async Task GetByAccountId_ReturnsCorrectCount()
         {
             var context = new EnsekContext(_contextOptions);
-            var repo = new AccountRepository(context);
+            var repo = new MeterReadingRepository(context);
 
-            var accounts = await repo.GetAll();
+            var result = await repo.GetByAccountId(1);
 
-            // Seed data is run in to db, so count is 27 + the 3 set up here
-            Assert.AreEqual(30, accounts.Count);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(1, result[0].AccountId);
+            Assert.AreEqual(1, result[1].AccountId);
         }
-
     }
 }
