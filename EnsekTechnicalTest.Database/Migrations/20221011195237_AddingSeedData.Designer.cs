@@ -4,6 +4,7 @@ using EnsekTechnicalTest.Database.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnsekTechnicalTest.Database.Migrations
 {
     [DbContext(typeof(EnsekContext))]
-    partial class EnsekContextModelSnapshot : ModelSnapshot
+    [Migration("20221011195237_AddingSeedData")]
+    partial class AddingSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,6 +32,9 @@ namespace EnsekTechnicalTest.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccountId"), 1L, 1);
 
+                    b.Property<int?>("AccountId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -39,6 +44,8 @@ namespace EnsekTechnicalTest.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AccountId");
+
+                    b.HasIndex("AccountId1");
 
                     b.ToTable("Accounts");
 
@@ -231,10 +238,17 @@ namespace EnsekTechnicalTest.Database.Migrations
                     b.ToTable("MeterReadings");
                 });
 
+            modelBuilder.Entity("EnsekTechnicalTest.Models.Account", b =>
+                {
+                    b.HasOne("EnsekTechnicalTest.Models.Account", null)
+                        .WithMany("Accounts")
+                        .HasForeignKey("AccountId1");
+                });
+
             modelBuilder.Entity("EnsekTechnicalTest.Models.MeterReading", b =>
                 {
                     b.HasOne("EnsekTechnicalTest.Models.Account", "Account")
-                        .WithMany("MeterReadings")
+                        .WithMany()
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -244,7 +258,7 @@ namespace EnsekTechnicalTest.Database.Migrations
 
             modelBuilder.Entity("EnsekTechnicalTest.Models.Account", b =>
                 {
-                    b.Navigation("MeterReadings");
+                    b.Navigation("Accounts");
                 });
 #pragma warning restore 612, 618
         }
