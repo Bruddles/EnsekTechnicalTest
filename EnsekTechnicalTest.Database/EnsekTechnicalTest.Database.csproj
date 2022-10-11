@@ -19,8 +19,4 @@
     <ProjectReference Include="..\EnsekTechnicalTest.Models\EnsekTechnicalTest.Models.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
-
 </Project>

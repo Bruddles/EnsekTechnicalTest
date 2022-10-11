@@ -1,4 +1,4 @@
-﻿using EnsekTechnicalTest.Services.Models;
+﻿using EnsekTechnicalTest.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EnsekTechnicalTest.Database.Context

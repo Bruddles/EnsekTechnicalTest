@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnsekTechnicalTest.Services.Models
+namespace EnsekTechnicalTest.Models
 {
     public class Account
     {
@@ -15,6 +15,8 @@ namespace EnsekTechnicalTest.Services.Models
         public int AccountId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        public ICollection<Account> Accounts { get; set; }
            
     }
 }

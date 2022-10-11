@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsekTechnicalTest.Models",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsekTechnicalTest.Database", "EnsekTechnicalTest.Database\EnsekTechnicalTest.Database.csproj", "{C65AD8B6-75FD-4F39-B8F6-975137A7953D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnsekTechnicalTest.Database.Test", "EnsekTechnicalTest.Database.Test\EnsekTechnicalTest.Database.Test.csproj", "{650CB919-D1BF-44F8-9CC2-19A4D116AC73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{C65AD8B6-75FD-4F39-B8F6-975137A7953D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C65AD8B6-75FD-4F39-B8F6-975137A7953D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C65AD8B6-75FD-4F39-B8F6-975137A7953D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{650CB919-D1BF-44F8-9CC2-19A4D116AC73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{650CB919-D1BF-44F8-9CC2-19A4D116AC73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{650CB919-D1BF-44F8-9CC2-19A4D116AC73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{650CB919-D1BF-44F8-9CC2-19A4D116AC73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

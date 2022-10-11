@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EnsekTechnicalTest.Database\EnsekTechnicalTest.Database.csproj" />
     <ProjectReference Include="..\EnsekTechnicalTest.Models\EnsekTechnicalTest.Models.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-﻿using EnsekTechnicalTest.Services.Models;
+﻿using EnsekTechnicalTest.Models;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -10,7 +10,7 @@ namespace EnsekTechnicalTest.Services.Services.Interfaces
 {
     public interface IAccountService
     {
-        public Account GetAccount(string accountId);
-        public IEnumerable<Account> GetAccounts();
+        public Task<Account> GetAccount(int accountId);
+        public Task<List<Account>> GetAccounts();
     }
 }

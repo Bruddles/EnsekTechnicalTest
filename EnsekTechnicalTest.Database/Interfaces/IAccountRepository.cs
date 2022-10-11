@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EnsekTechnicalTest.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace EnsekTechnicalTest.Database.Interfaces
 {
-    internal interface IAccountRepository
+    public interface IAccountRepository
     {
+        public Task<Account> Get(int id);
+        public Task<List<Account>> GetAll();
     }
 }
