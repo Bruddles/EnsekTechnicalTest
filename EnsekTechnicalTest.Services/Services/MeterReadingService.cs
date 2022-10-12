@@ -55,7 +55,7 @@ namespace EnsekTechnicalTest.Services.Services
         public async Task<List<MeterReading>> Validate(List<MeterReading> readings)
         {
             // Remove any meter readings not in NNNNNN
-            var filtered = readings.Where(r => r.MeterReadValue <= 99999);
+            var filtered = readings.Where(r => r.MeterReadValue <= 99999 || r.MeterReadValue >= 0);
 
             // Get all accounts for readings
             var accounts = await _accountRepository.GetForIds(filtered.Select(f => f.AccountId).ToArray());
@@ -76,16 +76,24 @@ namespace EnsekTechnicalTest.Services.Services
                 if (existingReadingsDict.TryGetValue(r.AccountId, out var existingReadings))
                 {
                     // Check we are not submitting a duplicate or a record with a date behind a current record
-                    return !(existingReadings.Any(er =>
-                        (er.MeterReadValue == r.MeterReadValue
-                            && er.MeterReadingDateTime == r.MeterReadingDateTime
-                        ) || er.MeterReadingDateTime > r.MeterReadingDateTime));
+                    return !(existingReadings.Any(er => areDuplicateReadings(er, r) || isAnOlderReading(r, er)));
                 }
 
                 return true;
             });
 
             return filtered.ToList();
+        }
+
+        private static bool isAnOlderReading(MeterReading newReading, MeterReading existingReading)
+        {
+            return existingReading.MeterReadingDateTime > newReading.MeterReadingDateTime;
+        }
+
+        private static bool areDuplicateReadings(MeterReading existingReading, MeterReading newReading)
+        {
+            return existingReading.MeterReadValue == newReading.MeterReadValue
+                && existingReading.MeterReadingDateTime == newReading.MeterReadingDateTime;
         }
 
         public Task<int> Save(List<MeterReading> readings)
