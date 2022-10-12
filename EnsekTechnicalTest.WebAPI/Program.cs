@@ -20,8 +20,7 @@ builder.Services.AddTransient<IAccountRepository, AccountRepository>();
 builder.Services.AddTransient<IAccountService, AccountService>();
 builder.Services.AddTransient<IMeterReadingRepository, MeterReadingRepository>();
 builder.Services.AddTransient<IMeterReadingService, MeterReadingService>();
-builder.Services.AddTransient<ICsvParser<MeterReadingFromFile>, CsvParser<MeterReadingFromFile>>();
-builder.Services.AddTransient<ICsvParser<MeterReading>, CsvParser<MeterReading>>();
+builder.Services.AddTransient<ICsvParser<MeterReading>, MeterReadingCsvParser>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

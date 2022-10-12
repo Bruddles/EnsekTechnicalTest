@@ -31,13 +31,14 @@ namespace EnsekTechnicalTest.Services.Services
             return _meterReadingRepository.GetByAccountId(accountId);
         }
 
-        public Task Process(StreamReader stream)
+        public Task Process(Stream stream)
         {
-            var records = _csvParser.Parse(stream);
+            using var reader = new StreamReader(stream);
+            var result = _csvParser.Parse(reader);
 
-            if (records != null)
+            if (result != null)
             {
-                this.Save(records);
+                this.Save(result.ParsedLines);
             }
 
             return Task.CompletedTask;
