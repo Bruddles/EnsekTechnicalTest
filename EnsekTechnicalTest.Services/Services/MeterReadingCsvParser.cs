@@ -20,7 +20,7 @@ namespace EnsekTechnicalTest.Services.Services
     {
         internal class MeterReadingMap: ClassMap<MeterReading>
         {
-            private Regex MeterReadingRegex = new Regex(@"\b\d{5}\b");
+            private Regex MeterReadingRegex = new Regex(@"^\d{5}$");
 
             public MeterReadingMap()
             {
