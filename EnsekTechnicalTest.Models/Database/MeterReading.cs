@@ -13,7 +13,7 @@ namespace EnsekTechnicalTest.Models.Database
         public int AccountId { get; set; }
         public Account Account { get; set; }
         public DateTime MeterReadingDateTime { get; set; }
-        public int MeterReadValue { get; set; }
+        public string MeterReadValue { get; set; }
 
     }
 }

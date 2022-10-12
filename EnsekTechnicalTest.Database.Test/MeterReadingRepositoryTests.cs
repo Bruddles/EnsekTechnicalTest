@@ -54,21 +54,21 @@ FROM Account;";
                     Id = 1,
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.MinValue,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 },
                 new MeterReading()
                 {
                     Id = 2,
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.Now,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 },
                 new MeterReading()
                 {
                     Id = 3,
                     AccountId = 2,
                     MeterReadingDateTime = DateTime.Now,
-                    MeterReadValue = 4567
+                    MeterReadValue = "04567"
                 }
             );
             context.SaveChanges();

@@ -41,7 +41,7 @@ namespace EnsekTechnicalTest.Services.Services
             var savedLinesCount = 0;
             using var reader = new StreamReader(stream);
             var result = _csvParser.Parse(reader);
-            var totalLines = result.FailedToParseLines.Count + result.FailedToParseLines.Count;
+            var totalLines = result.FailedToParseLines.Count + result.ParsedLines.Count;
 
             var validationResult = await this.Validate(result.ParsedLines);
 
@@ -60,11 +60,8 @@ namespace EnsekTechnicalTest.Services.Services
 
         public async Task<List<MeterReading>> Validate(List<MeterReading> readings)
         {
-            // Remove any meter readings not in NNNNNN
-            var filtered = readings.Where(r => r.MeterReadValue <= 99999 || r.MeterReadValue >= 0);
-
             // Get all accounts for readings
-            var accounts = await _accountRepository.GetForIds(filtered.Select(f => f.AccountId).ToArray());
+            var accounts = await _accountRepository.GetForIds(readings.Select(f => f.AccountId).ToArray());
 
             if (accounts == null)
             {
@@ -72,7 +69,7 @@ namespace EnsekTechnicalTest.Services.Services
             }
 
             // Filter out readings with an invalid account
-            filtered = filtered.Where(r => accounts.Any(a => a.AccountId == r.AccountId));
+            var filtered = readings.Where(r => accounts.Any(a => a.AccountId == r.AccountId));
 
             // Get all readings for the accounts
             var existingReadingsDict = await _meterReadingRepository.GetByAccountIds(filtered.Select(f => f.AccountId).ToArray());

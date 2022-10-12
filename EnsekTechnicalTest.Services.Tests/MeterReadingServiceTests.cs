@@ -27,19 +27,19 @@ namespace EnsekTechnicalTest.Services.Tests
                     Id = 1,
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.MinValue,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 },
                 new MeterReading() {
                     Id = 2,
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.Now,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 },
                 new MeterReading() {
                     Id = 3,
                     AccountId = 2,
                     MeterReadingDateTime = DateTime.Now,
-                    MeterReadValue = 4567
+                    MeterReadValue = "04567"
                 }
             };
 
@@ -64,13 +64,13 @@ namespace EnsekTechnicalTest.Services.Tests
                     Id = 1,
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.MinValue,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 },
                 new MeterReading() {
                     Id = 2,
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.Now,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 }
             };
 
@@ -114,7 +114,7 @@ namespace EnsekTechnicalTest.Services.Tests
                 new MeterReading() {
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.Now,
-                    MeterReadValue = 888
+                    MeterReadValue = "00888"
                 }
             };
 
@@ -139,7 +139,7 @@ namespace EnsekTechnicalTest.Services.Tests
                     Id = 1,
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.MinValue,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 }
             };
 
@@ -161,7 +161,7 @@ namespace EnsekTechnicalTest.Services.Tests
                 new MeterReading() {
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.Now,
-                    MeterReadValue = 888
+                    MeterReadValue = "00888"
                 }
             };
 
@@ -186,7 +186,7 @@ namespace EnsekTechnicalTest.Services.Tests
                     Id = 1,
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.MinValue,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 }
             };
 
@@ -208,7 +208,7 @@ namespace EnsekTechnicalTest.Services.Tests
                 new MeterReading() {
                     AccountId = 2,
                     MeterReadingDateTime = DateTime.Now,
-                    MeterReadValue = 888
+                    MeterReadValue = "00888"
                 }
             };
 
@@ -233,7 +233,7 @@ namespace EnsekTechnicalTest.Services.Tests
                     Id = 1,
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.MinValue,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 }
             };
 
@@ -255,7 +255,7 @@ namespace EnsekTechnicalTest.Services.Tests
                 new MeterReading() {
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.MinValue,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 }
             };
 
@@ -280,7 +280,7 @@ namespace EnsekTechnicalTest.Services.Tests
                     Id = 1,
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.MaxValue,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 }
             };
 
@@ -302,7 +302,7 @@ namespace EnsekTechnicalTest.Services.Tests
                 new MeterReading() {
                     AccountId = 1,
                     MeterReadingDateTime = DateTime.MinValue,
-                    MeterReadValue = 1234
+                    MeterReadValue = "01234"
                 }
             };
 
