@@ -22,5 +22,6 @@ namespace EnsekTechnicalTest.Database.Repositories
         public Task<Account> Get(int id) => _context.Accounts.FirstOrDefaultAsync(a => a.AccountId == id);
 
         public Task<List<Account>> GetAll() => _context.Accounts.ToListAsync();
+        public Task<List<Account>> GetForIds(int[] ids) => _context.Accounts.Where(a => ids.Contains(a.AccountId)).ToListAsync();
     }
 }

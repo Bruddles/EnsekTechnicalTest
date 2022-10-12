@@ -34,5 +34,27 @@ namespace EnsekTechnicalTest.Database.Repositories
             await _context.MeterReadings.AddRangeAsync(readings);
             return await _context.SaveChangesAsync();
         }
+
+
+        public async Task<Dictionary<int, List<MeterReading>>> GetByAccountIds(int[] accountIds)
+        {
+            var result = new Dictionary<int, List<MeterReading>>();
+
+            var readings = await _context.MeterReadings
+                .Where(m => accountIds.Contains(m.AccountId)).ToListAsync();
+
+            foreach(MeterReading m in readings)
+            {
+                if (result.TryGetValue(m.AccountId, out var list))
+                {
+                    list.Add(m);
+                } else
+                {
+                    result.Add(m.AccountId, new List<MeterReading> { m });
+                }
+            }
+
+            return result;
+        }
     }
 }

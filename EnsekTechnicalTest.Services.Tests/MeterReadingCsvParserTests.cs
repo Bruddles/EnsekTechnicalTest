@@ -72,6 +72,7 @@ namespace EnsekTechnicalTest.Services.Tests
                 Assert.AreEqual(0, result.ParsedLines.Count);
             }
         }
+
         [Test]
         public void Parse_DoesntParseBadMeterReadValue()
         {
@@ -83,6 +84,27 @@ namespace EnsekTechnicalTest.Services.Tests
             {
                 writer.WriteLine("AccountId,MeterReadingDateTime,MeterReadValue");
                 writer.WriteLine("2344,22/04/2019 09:24,0X1002");
+                writer.Flush();
+                stream.Position = 0;
+
+                var result = parser.Parse(reader);
+
+                Assert.AreEqual(1, result.FailedToParseLines.Count);
+                Assert.AreEqual(0, result.ParsedLines.Count);
+            }
+        }
+
+        [Test]
+        public void Parse_DoesntParseBadMeterReadValue_Over5Digits()
+        {
+            var parser = new MeterReadingCsvParser();
+
+            using (var stream = new MemoryStream())
+            using (var writer = new StreamWriter(stream))
+            using (var reader = new StreamReader(stream))
+            {
+                writer.WriteLine("AccountId,MeterReadingDateTime,MeterReadValue");
+                writer.WriteLine("2344,22/04/2019 09:24,011002");
                 writer.Flush();
                 stream.Position = 0;
 

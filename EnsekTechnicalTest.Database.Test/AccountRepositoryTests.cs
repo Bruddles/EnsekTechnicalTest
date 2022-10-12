@@ -82,5 +82,18 @@ FROM Account;";
             Assert.AreEqual(30, accounts.Count);
         }
 
+
+        [Test]
+        public async Task GetForIds_ReturnsAccounts()
+        {
+            var context = new EnsekContext(_contextOptions);
+            var repo = new AccountRepository(context);
+
+            var accounts = await repo.GetForIds(new int[] {1,2});
+
+            // Seed data is run in to db, so count is 27 + the 3 set up here
+            Assert.AreEqual(2, accounts.Count);
+        }
+
     }
 }

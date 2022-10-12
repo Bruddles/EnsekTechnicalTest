@@ -102,5 +102,47 @@ FROM Account;";
             Assert.AreEqual(1, result[0].AccountId);
             Assert.AreEqual(1, result[1].AccountId);
         }
+
+
+        [Test]
+        public async Task GetByAccountIds_ReturnsCorrectCount_ForOneId()
+        {
+            var context = new EnsekContext(_contextOptions);
+            var repo = new MeterReadingRepository(context);
+
+            var result = await repo.GetByAccountIds(new int[] {1});
+
+            Assert.AreEqual(1, result.Count());
+
+            Assert.IsTrue(result.ContainsKey(1));
+            Assert.AreEqual(2, result[1].Count());
+        }
+
+        [Test]
+        public async Task GetByAccountIds_ReturnsEmpty_ForEmptyArray()
+        {
+            var context = new EnsekContext(_contextOptions);
+            var repo = new MeterReadingRepository(context);
+
+            var result = await repo.GetByAccountIds(new int[] { });
+
+            Assert.AreEqual(0, result.Count());
+        }
+
+        [Test]
+        public async Task GetByAccountIds_ReturnsCorrectCount_ForTwoIds()
+        {
+            var context = new EnsekContext(_contextOptions);
+            var repo = new MeterReadingRepository(context);
+
+            var result = await repo.GetByAccountIds(new int[] { 1, 2 });
+
+            Assert.AreEqual(2, result.Count());
+
+            Assert.IsTrue(result.ContainsKey(1));
+            Assert.AreEqual(2, result[1].Count());
+            Assert.IsTrue(result.ContainsKey(2));
+            Assert.AreEqual(1, result[2].Count());
+        }
     }
 }

@@ -10,6 +10,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -19,11 +20,13 @@ namespace EnsekTechnicalTest.Services.Services
     {
         internal class MeterReadingMap: ClassMap<MeterReading>
         {
+            private Regex MeterReadingRegex = new Regex(@"\b\d{5}\b");
+
             public MeterReadingMap()
             {
                 Map(m => m.AccountId).Name("AccountId");
                 Map(m => m.MeterReadingDateTime).Name("MeterReadingDateTime").TypeConverterOption.Format("dd/MM/yyyy HH:mm");
-                Map(m => m.MeterReadValue).Name("MeterReadValue");
+                Map(m => m.MeterReadValue).Name("MeterReadValue").Validate(args => MeterReadingRegex.IsMatch(args.Field));
             }
         }
 
