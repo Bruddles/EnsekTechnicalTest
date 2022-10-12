@@ -36,11 +36,12 @@ namespace EnsekTechnicalTest.Services.Services
             return _meterReadingRepository.GetByAccountId(accountId);
         }
 
-        public async Task<int> Process(Stream stream)
+        public async Task<ProcessResponse> Process(Stream stream)
         {
             var savedLinesCount = 0;
             using var reader = new StreamReader(stream);
             var result = _csvParser.Parse(reader);
+            var totalLines = result.FailedToParseLines.Count + result.FailedToParseLines.Count;
 
             var validationResult = await this.Validate(result.ParsedLines);
 
@@ -49,7 +50,12 @@ namespace EnsekTechnicalTest.Services.Services
                 savedLinesCount = await this.Save(validationResult);
             }
 
-            return savedLinesCount;
+            return new ProcessResponse
+            {
+                LinesSaved = savedLinesCount,
+                LinesFailed = totalLines - savedLinesCount,
+                TotalLines = totalLines
+            };
         }
 
         public async Task<List<MeterReading>> Validate(List<MeterReading> readings)
