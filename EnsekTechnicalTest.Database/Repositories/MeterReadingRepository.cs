@@ -29,12 +29,10 @@ namespace EnsekTechnicalTest.Database.Repositories
             return _context.MeterReadings.Where(mr => mr.AccountId == accountId).ToListAsync();
         }
 
-        public async Task Save(List<MeterReading> readings)
+        public async Task<int> Save(List<MeterReading> readings)
         {
             await _context.MeterReadings.AddRangeAsync(readings);
-            await _context.SaveChangesAsync();
-
-            return;
+            return await _context.SaveChangesAsync();
         }
     }
 }

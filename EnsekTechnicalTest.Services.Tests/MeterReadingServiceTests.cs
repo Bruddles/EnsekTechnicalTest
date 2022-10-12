@@ -45,8 +45,9 @@ namespace EnsekTechnicalTest.Services.Tests
 
             var repoMock = new Mock<IMeterReadingRepository>();
             repoMock.Setup(r => r.GetAll()).ReturnsAsync(mockReadings);
+            var parserMock = new Mock<ICsvParser<MeterReading>>();
 
-            var service = new MeterReadingService(repoMock.Object);
+            var service = new MeterReadingService(repoMock.Object, parserMock.Object);
 
             var readings = await service.GetAll();
 
@@ -74,8 +75,9 @@ namespace EnsekTechnicalTest.Services.Tests
 
             var repoMock = new Mock<IMeterReadingRepository>();
             repoMock.Setup(r => r.GetByAccountId(1)).ReturnsAsync(mockReadings);
+            var parserMock = new Mock<ICsvParser<MeterReading>>();
 
-            var service = new MeterReadingService(repoMock.Object);
+            var service = new MeterReadingService(repoMock.Object, parserMock.Object);
 
             var readings = await service.GetByAccountId(1);
 

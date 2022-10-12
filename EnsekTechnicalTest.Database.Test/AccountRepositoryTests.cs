@@ -1,6 +1,7 @@
 using EnsekTechnicalTest.Database.Context;
 using EnsekTechnicalTest.Database.Repositories;
 using EnsekTechnicalTest.Models;
+using EnsekTechnicalTest.Models.Database;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Moq;
