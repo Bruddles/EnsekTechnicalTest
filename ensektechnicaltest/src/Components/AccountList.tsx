@@ -4,11 +4,13 @@ import { Account } from '../Services/EnsekTechnicalTestService';
 
 export interface IAccountsListProps {
     accounts: Account[]
+    onRowClick: (record: Account) => void
 }
 
 function AccountList(
     {
         accounts,
+        onRowClick,
     }: IAccountsListProps
 ) {
     var columns = [
@@ -29,10 +31,20 @@ function AccountList(
         },
     ]
 
+    const mapAccounts = (accounts: Account[]) => accounts.map(a => ({ key: a.accountId, ...a }))
+
+    var tableData = mapAccounts(accounts)
+
     return (
         <Table
-            dataSource={accounts}
+            dataSource={tableData}
             columns={columns}
+            rowSelection={{
+                type: 'radio',
+                onChange: (selectedRowKeys: React.Key[], selectedRows: Account[]) => {
+                    onRowClick(selectedRows[0])
+                }
+            } }
         />
     );
 }
