@@ -1,10 +1,10 @@
 import { Button, Upload } from 'antd';
 import { RcFile } from 'antd/lib/upload'
 import React from 'react';
-import { ProcessResponse } from '../Services/EnsekTechnicalTestService';
+import { ProcessResult } from '../Services/EnsekTechnicalTestService';
 
 export interface IUploadMeterReadingsResultsProps {
-    result: ProcessResponse | null
+    result: ProcessResult | null
 }
 
 function UploadMeterReadingsResults({

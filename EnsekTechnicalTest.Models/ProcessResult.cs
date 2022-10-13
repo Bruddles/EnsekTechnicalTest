@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EnsekTechnicalTest.Models
 {
-    public class ProcessResponse
+    public class ProcessResult
     {
         public int LinesSaved { get; set; }
         public int LinesFailed { get; set; }

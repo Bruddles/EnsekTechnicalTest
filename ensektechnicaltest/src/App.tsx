@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'antd/dist/antd.css';
-import { Account, EnsekTechnicalTestService, MeterReading, ProcessResponse } from './Services/EnsekTechnicalTestService';
+import { Account, EnsekTechnicalTestService, MeterReading, ProcessResult } from './Services/EnsekTechnicalTestService';
 import { Button, Col, Collapse, Row } from 'antd';
 import AccountList from './Components/AccountList';
 import MeterReadingList from './Components/MeterReadingList';
@@ -14,7 +14,7 @@ function App() {
     var service = useMemo(() => new EnsekTechnicalTestService(), [])
     var [accountsState, setsAccountState] = useState<Array<Account>>([])
     var [meterReadingsForAccountState, setMeterReadingsForAccountState] = useState<Array<MeterReading>>([])
-    var [uploadResultState, setUploadResultState] = useState<ProcessResponse | null>(null)
+    var [uploadResultState, setUploadResultState] = useState<ProcessResult | null>(null)
     var [selectedAccountState, setSelectedAccountState] = useState<Account | null>(null)
 
     useEffect(() => {

@@ -15,6 +15,6 @@ namespace EnsekTechnicalTest.Services.Services.Interfaces
         public Task<List<MeterReading>> GetAll();
         public Task<int> Save(List<MeterReading> readings);
 
-        public Task<ProcessResponse> Process(Stream stream);
+        public Task<ProcessResult> Process(Stream stream);
     }
 }

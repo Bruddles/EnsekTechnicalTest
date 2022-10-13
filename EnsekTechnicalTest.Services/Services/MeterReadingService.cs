@@ -36,7 +36,7 @@ namespace EnsekTechnicalTest.Services.Services
             return _meterReadingRepository.GetByAccountId(accountId);
         }
 
-        public async Task<ProcessResponse> Process(Stream stream)
+        public async Task<ProcessResult> Process(Stream stream)
         {
             var savedLinesCount = 0;
             using var reader = new StreamReader(stream);
@@ -50,7 +50,7 @@ namespace EnsekTechnicalTest.Services.Services
                 savedLinesCount = await this.Save(validationResult);
             }
 
-            return new ProcessResponse
+            return new ProcessResult
             {
                 LinesSaved = savedLinesCount,
                 LinesFailed = totalLines - savedLinesCount,
@@ -60,7 +60,6 @@ namespace EnsekTechnicalTest.Services.Services
 
         public async Task<List<MeterReading>> Validate(List<MeterReading> readings)
         {
-            // Get all accounts for readings
             var accounts = await _accountRepository.GetForIds(readings.Select(f => f.AccountId).ToArray());
 
             if (accounts == null)
@@ -68,17 +67,14 @@ namespace EnsekTechnicalTest.Services.Services
                 return new List<MeterReading>();
             }
 
-            // Filter out readings with an invalid account
             var filtered = readings.Where(r => accounts.Any(a => a.AccountId == r.AccountId));
 
-            // Get all readings for the accounts
             var existingReadingsDict = await _meterReadingRepository.GetByAccountIds(filtered.Select(f => f.AccountId).ToArray());
 
             filtered = filtered.Where(r =>
             {
                 if (existingReadingsDict.TryGetValue(r.AccountId, out var existingReadings))
                 {
-                    // Check we are not submitting a duplicate or a record with a date behind a current record
                     return !(existingReadings.Any(er => areDuplicateReadings(er, r) || isAnOlderReading(r, er)));
                 }
 

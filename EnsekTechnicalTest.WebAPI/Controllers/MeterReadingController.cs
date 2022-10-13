@@ -60,13 +60,13 @@ namespace EnsekTechnicalTest.WebAPI.Controllers
         }
 
         [HttpPost("/meter-reading-uploads")]
-        public async Task<ApiResponse<ProcessResponse>> Upload([FromForm]IFormFile formFile)
+        public async Task<ApiResponse<ProcessResult>> Upload([FromForm]IFormFile formFile)
         {
             var uploadFileStream = formFile.OpenReadStream();
 
             var result = await _service.Process(uploadFileStream);
 
-            return new ApiResponse<ProcessResponse>
+            return new ApiResponse<ProcessResult>
             {
                 Success = true,
                 Value = result

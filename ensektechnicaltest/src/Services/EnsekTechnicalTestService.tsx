@@ -24,7 +24,7 @@ export class EnsekTechnicalTestService {
     }
 
 
-    public async uploadMeterReadings(file: File): Promise<ApiResponse<ProcessResponse>> {
+    public async uploadMeterReadings(file: File): Promise<ApiResponse<ProcessResult>> {
         let formData = new FormData();
         formData.append('formFile', file);
 
@@ -53,7 +53,7 @@ export type MeterReading = {
     meterReadValue: string
 }
 
-export type ProcessResponse = {
+export type ProcessResult = {
     totalLines: number,
     linesSaved: number,
     linesFailed: number
