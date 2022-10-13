@@ -28,7 +28,7 @@ export class EnsekTechnicalTestService {
         let formData = new FormData();
         formData.append('formFile', file);
 
-        const response = await axios.post(`${config.EnsekTechnicalTestServiceUrl}/api/MeterReading/meter-reading-uploads`, formData)
+        const response = await axios.post(`${config.EnsekTechnicalTestServiceUrl}/meter-reading-uploads`, formData)
         return await response.data
     }
 

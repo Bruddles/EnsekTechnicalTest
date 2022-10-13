@@ -59,7 +59,7 @@ namespace EnsekTechnicalTest.WebAPI.Controllers
             };
         }
 
-        [HttpPost("meter-reading-uploads")]
+        [HttpPost("/meter-reading-uploads")]
         public async Task<ApiResponse<ProcessResponse>> Upload([FromForm]IFormFile formFile)
         {
             var uploadFileStream = formFile.OpenReadStream();
