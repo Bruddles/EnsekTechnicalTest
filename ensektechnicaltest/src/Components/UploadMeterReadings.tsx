@@ -13,6 +13,7 @@ function UploadMeterReadings({
         <Upload
             beforeUpload={beforeUpload}
             accept='.csv'
+            showUploadList={false}
         >
             <Button>Upload Meter Readings</Button>
         </Upload>

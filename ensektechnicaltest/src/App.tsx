@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import 'antd/dist/antd.css';
 import { Account, EnsekTechnicalTestService, MeterReading, ProcessResponse } from './Services/EnsekTechnicalTestService';
-import { Button, Col, Row } from 'antd';
+import { Button, Col, Collapse, Row } from 'antd';
 import AccountList from './Components/AccountList';
 import MeterReadingList from './Components/MeterReadingList';
 import { RcFile } from 'antd/lib/upload';
@@ -53,26 +53,45 @@ function App() {
     return (
         <>
             <Row>
-                <Col span={18}>
+                <Col span={24}>
                     <h1>ENSEK TECHNICAL TEST</h1>
                 </Col>
             </Row>
             <Row>
-                <Col span={6}>
-                    <UploadMeterReadings beforeUpload={handleUpload} />
-                </Col>
-                <Col span={6}>
-                    <UploadMeterReadingsResults result={uploadResultState} />
-                </Col>
-            </Row>
-            <Row>
                 <Col span={24}>
-                    <AccountList accounts={accountsState} onRowClick={handleAccountRowClick}/>
-                </Col>
-            </Row>
-            <Row>
-                <Col span={24}>
-                    <MeterReadingList meterReadings={meterReadingsForAccountState} />
+                    <Collapse defaultActiveKey={['1']}>
+                        <Collapse.Panel header='Upload Meter Readings' key='1'>
+                            <Row>
+                                <Col span={6}>
+                                    <UploadMeterReadings beforeUpload={handleUpload} />
+                                </Col>
+                                <Col span={6}>
+                                    <UploadMeterReadingsResults result={uploadResultState} />
+                                </Col>
+                            </Row>
+                        </Collapse.Panel>
+                        <Collapse.Panel header='View Meter Readings' key='2'>
+                            <Row>
+                                <h4>Accounts</h4>
+                            </Row>
+                            <Row>
+                                <Col span={24}>
+                                    <AccountList accounts={accountsState} onRowClick={handleAccountRowClick} />
+                                </Col>
+                            </Row>
+                            <Row>
+                                {selectedAccountState != null
+                                    ? (<h4>Meter Readings for account: ID: {selectedAccountState?.accountId}, Name: {selectedAccountState?.firstName + ' ' +  selectedAccountState?.lastName}</h4>)
+                                    : (<h4>Meter Readings</h4>)
+                                }
+                            </Row>
+                            <Row>
+                                <Col span={24}>
+                                    <MeterReadingList meterReadings={meterReadingsForAccountState} />
+                                </Col>
+                            </Row>
+                        </Collapse.Panel>
+                    </Collapse>
                 </Col>
             </Row>
         </>
